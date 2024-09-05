@@ -1,11 +1,3 @@
----
-library_name: transformers
-base_model: google/gemma-2-27b-it
-datasets:
-- Skywork/skywork-reward-preference-80K-v0.1
-pipeline_tag: text-classification
----
-
 <div align="center">
 <img src="misc/fig.jpg" width="400"/>
 🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a>
