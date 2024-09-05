@@ -1,3 +1,9 @@
+---
+license: other
+license_name: skywork
+license_link: >-
+  https://github.com/SkyworkAI/Skywork-Reward/blob/main/misc/Skywork%20Community%20License.pdf
+---
 <div align="center">
 
 <img src="misc/fig.jpg" width="400"/>
@@ -104,7 +110,7 @@ We have done our utmost to ensure the compliance of the data used during the mod
 
 ### License Agreement
 
-The community usage of Skywork model requires [Skywork Community License](). The Skywork model supports commercial use. If you plan to use the Skywork model or its derivatives for commercial purposes, you must abide by terms and conditions within [Skywork Community License]().
+The community usage of Skywork model requires [Skywork Community License](https://github.com/SkyworkAI/Skywork-Reward/blob/main/misc/Skywork%20Community%20License.pdf). The Skywork model supports commercial use. If you plan to use the Skywork model or its derivatives for commercial purposes, you must abide by terms and conditions within [Skywork Community License](https://github.com/SkyworkAI/Skywork-Reward/blob/main/misc/Skywork%20Community%20License.pdf).
 
 ## Technical Report
 
