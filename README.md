@@ -1,9 +1,8 @@
 <div align="center">
 <img src="misc/fig.jpg" width="400"/>
+<br>
+<br>
 🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a>
-<br>
-<br>
-<br>
 </div>
 
 # Skywork Reward Model Series
