@@ -1,9 +1,3 @@
----
-license: other
-license_name: skywork
-license_link: >-
-  https://github.com/SkyworkAI/Skywork-Reward/blob/main/misc/Skywork%20Community%20License.pdf
----
 <div align="center">
 
 <img src="misc/fig.jpg" width="400"/>
