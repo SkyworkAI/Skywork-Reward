@@ -8,7 +8,7 @@
 
 ## Introduction
 
-**Skywork-Reward-Gemma-2-27B** and **Skywork-Reward-Llama-3.1-8B** are two advanced reward models built on the [gemma-2-27b-it](https://huggingface.co/google/gemma-2-27b-it) and [Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) architectures, respectively. Both models were trained using the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) containing only 80K high-quality preference pairs sourced from publicly available data.
+[**Skywork-Reward-Gemma-2-27B**](https://huggingface.co/Skywork/Skywork-Reward-Gemma-2-27B) and [**Skywork-Reward-Llama-3.1-8B**](https://huggingface.co/Skywork/Skywork-Reward-Llama-3.1-8B) are two advanced reward models built on the [gemma-2-27b-it](https://huggingface.co/google/gemma-2-27b-it) and [Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) architectures, respectively. Both models were trained using the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) containing only 80K high-quality preference pairs sourced from publicly available data.
 
 We include only public data in an attempt to demonstrate that high-performance reward models can be achieved with a relatively small dataset and straightforward data curation techniques, without further algorithmic or architectural modifications. The sources of data used in the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) are detailed in the [Data Mixture](#data-mixture) section below.
 
