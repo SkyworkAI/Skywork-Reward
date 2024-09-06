@@ -35,20 +35,21 @@ During dataset curation, we adopt several tricks to achieve both performance imp
 
 We evaluate our model on [RewardBench](https://huggingface.co/spaces/allenai/reward-bench) using the [official test script](https://github.com/allenai/reward-bench). As of September 2024, Skywork-Reward-Gemma-2-27B and Skywork-Reward-Llama-3.1-8B rank first and third on the RewardBench leaderboard.
 
-| Rank  | Model                       | Chat  | Chat Hard | Safety | Reasoning | Score |
-| :---: | --------------------------- | :---: | :-------: | :----: | :-------: | :---: |
-|   1   | Skywork-Reward-Gemma-2-27B  | 95.8  |   91.4    |  92.0  |   96.2    | 93.9  |
-|   2   | SFR-LLaMa-3.1-70B-Judge-r   | 96.9  |   84.8    |  92.2  |   97.6    | 92.8  |
-|   3   | Skywork-Reward-Llama-3.1-8B | 96.1  |   87.3    |  90.6  |   96.1    | 92.5  |
-|   4   | Nemotron-4-340B-Reward      | 95.8  |   87.1    |  92.2  |   93.6    | 92.2  |
-|   5   | ArmoRM-Llama3-8B-v0.1       | 96.9  |   76.8    |  92.2  |   97.3    | 90.8  |
-|   6   | internlm2-20b-reward        | 98.9  |   76.5    |  89.9  |   95.8    | 90.3  |
+| Rank  | Model                           | Chat  | Chat Hard | Safety | Reasoning | Score |
+| :---: | ------------------------------- | :---: | :-------: | :----: | :-------: | :---: |
+|   1   | Skywork-Reward-Gemma-2-27B      | 95.8  |   91.4    |  92.0  |   96.1    | 93.8  |
+|   2   | SFR-LLaMa-3.1-70B-Judge-r       | 96.9  |   84.8    |  92.2  |   97.6    | 92.8  |
+|   3   | Skywork-Reward-Llama-3.1-8B     | 95.8  |   87.3    |  90.6  |   96.2    | 92.5  |
+|   4   | Nemotron-4-340B-Reward          | 95.8  |   87.1    |  92.2  |   93.6    | 92.2  |
+|   5   | ArmoRM-Llama3-8B-v0.1           | 96.9  |   76.8    |  92.2  |   97.3    | 90.8  |
+|   6   | Salesforce/SFR-nemo-12B-Judge-r | 97.2  |   82.2    |  87.5  |   95.1    | 90.5  |
+|   7   | internlm2-20b-reward            | 98.9  |   76.5    |  89.9  |   95.8    | 90.3  |
 
 ## Demo Code
 
 We provide example usage of the Skywork reward model series below. Please note that:
 
-1. We removed the BOS token from the chat templates of the two models to prevent it being added twice during `apply_chat_template` and tokenization.
+1. We removed the BOS token from the chat templates of the two models to prevent it being added twice during `apply_chat_template` and tokenization. **Therefore, please do not rely on `apply_chat_template` to add the BOS token.**
 2. To enable optimal performance for the 27B reward model, ensure that you have enabled either the `flash_attention_2` or `eager` implementation. The default `spda` implementation may result in bugs that could significantly degrade the model's performance for this particular model.
 
 Below is an example of obtaining the reward scores of two conversations.
