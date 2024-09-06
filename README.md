@@ -49,7 +49,7 @@ We evaluate our model on [RewardBench](https://huggingface.co/spaces/allenai/rew
 
 We provide example usage of the Skywork reward model series below. Please note that:
 
-1. We removed the BOS token from the chat templates of the two models to prevent it being added twice during `apply_chat_template` and tokenization.
+1. We removed the BOS token from the chat templates of the two models to prevent it being added twice during `apply_chat_template` and tokenization. **Therefore, please do not rely on `apply_chat_template` to add the BOS token.**
 2. To enable optimal performance for the 27B reward model, ensure that you have enabled either the `flash_attention_2` or `eager` implementation. The default `spda` implementation may result in bugs that could significantly degrade the model's performance for this particular model.
 
 Below is an example of obtaining the reward scores of two conversations.
