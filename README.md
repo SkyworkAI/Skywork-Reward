@@ -7,9 +7,14 @@
 
 # Skywork Reward Model Series
 
+> IMPORTANT:
+> The updated models were trained using the decontaminated version of the original Skywork Reward Preference dataset, now referred to as **v0.2**. The updated dataset, [Skywork-Reward-Preference-80K-v0.2](https://huggingface.co/datasets/Skywork/Skywork-Reward-Preference-80K-v0.2), removes 4,957 contaminated pairs from the [magpie-ultra-v0.1](https://huggingface.co/datasets/argilla/magpie-ultra-v0.1) subset, which had significant n-gram overlap with the evaluation prompts in [RewardBench](https://huggingface.co/datasets/allenai/reward-bench). You can find the set of removed pairs [here](https://huggingface.co/datasets/chrisliu298/Skywork-Reward-Preference-80K-v0.1-Contaminated). For more detailed information, please refer to [this GitHub gist](https://gist.github.com/natolambert/1aed306000c13e0e8c5bc17c1a5dd300).
+>
+> **If your task involves evaluation on [RewardBench](https://huggingface.co/datasets/allenai/reward-bench), we strongly recommend using v0.2 of both the dataset and the models instead of v0.1, to ensure proper decontamination and avoid any contamination issues.**
+
 ## Introduction
 
-[**Skywork-Reward-Gemma-2-27B**](https://huggingface.co/Skywork/Skywork-Reward-Gemma-2-27B) and [**Skywork-Reward-Llama-3.1-8B**](https://huggingface.co/Skywork/Skywork-Reward-Llama-3.1-8B) are two advanced reward models built on the [gemma-2-27b-it](https://huggingface.co/google/gemma-2-27b-it) and [Meta-Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) architectures, respectively. Both models were trained using the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) containing only 80K high-quality preference pairs sourced from publicly available data.
+[**Skywork-Reward-Gemma-2-27B-v0.2**](https://huggingface.co/Skywork/Skywork-Reward-Gemma-2-27B-v0.2) and [**Skywork-Reward-Llama-3.1-8B-v0.2**](https://huggingface.co/Skywork/Skywork-Reward-Llama-3.1-8B-v0.2) are two advanced reward models built on the [gemma-2-27b-it](https://huggingface.co/google/gemma-2-27b-it) and [Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) architectures, respectively. Both models were trained using the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) containing only 80K high-quality preference pairs sourced from publicly available data.
 
 We include only public data in an attempt to demonstrate that high-performance reward models can be achieved with a relatively small dataset and straightforward data curation techniques, without further algorithmic or architectural modifications. The sources of data used in the [Skywork Reward Data Collection](https://huggingface.co/collections/Skywork/skywork-reward-data-collection-66d7fda6a5098dc77035336d) are detailed in the [Data Mixture](#data-mixture) section below.
 
@@ -33,24 +38,28 @@ During dataset curation, we adopt several tricks to achieve both performance imp
 
 ## RewardBench Leaderboard
 
-We evaluate our model on [RewardBench](https://huggingface.co/spaces/allenai/reward-bench) using the [official test script](https://github.com/allenai/reward-bench). As of September 2024, Skywork-Reward-Gemma-2-27B and Skywork-Reward-Llama-3.1-8B rank first and third on the RewardBench leaderboard.
+We evaluate our model on [RewardBench](https://huggingface.co/spaces/allenai/reward-bench) using the [official test script](https://github.com/allenai/reward-bench). As of October 2024, Skywork-Reward-Gemma-2-27B-v0.2 ranks first among all models, and Skywork-Reward-Llama-3.1-8B-v0.2 ranks first among 8B models on the RewardBench leaderboard.
 
-| Rank  | Model                           | Chat  | Chat Hard | Safety | Reasoning | Score |
-| :---: | ------------------------------- | :---: | :-------: | :----: | :-------: | :---: |
-|   1   | Skywork-Reward-Gemma-2-27B      | 95.8  |   91.4    |  92.0  |   96.1    | 93.8  |
-|   2   | SFR-LLaMa-3.1-70B-Judge-r       | 96.9  |   84.8    |  92.2  |   97.6    | 92.8  |
-|   3   | Skywork-Reward-Llama-3.1-8B     | 95.8  |   87.3    |  90.6  |   96.2    | 92.5  |
-|   4   | Nemotron-4-340B-Reward          | 95.8  |   87.1    |  92.2  |   93.6    | 92.2  |
-|   5   | ArmoRM-Llama3-8B-v0.1           | 96.9  |   76.8    |  92.2  |   97.3    | 90.8  |
-|   6   | Salesforce/SFR-nemo-12B-Judge-r | 97.2  |   82.2    |  87.5  |   95.1    | 90.5  |
-|   7   | internlm2-20b-reward            | 98.9  |   76.5    |  89.9  |   95.8    | 90.3  |
+| Rank  | Model                                        | Model Type        | Score | Chat  | Chat Hard | Safety | Reasoning |
+| :---: | -------------------------------------------- | ----------------- | :---: | :---: | :-------: | :----: | :-------: |
+|   1   | **Skywork/Skywork-Reward-Gemma-2-27B-v0.2**  | Seq. Classifier   | 94.4  | 95.8  |   91.9    |  92.6  |   97.3    |
+|   2   | nvidia/Llama-3.1-Nemotron-70B-Reward         | Custom Classifier | 94.1  | 97.5  |   85.7    |  95.1  |   98.1    |
+|   3   | Skywork/Skywork-Reward-Gemma-2-27B           | Seq. Classifier   | 93.8  | 95.8  |   91.4    |  91.9  |   96.1    |
+|   4   | SF-Foundation/TextEval-Llama3.1-70B          | Generative        | 93.5  | 94.1  |   90.1    |  93.2  |   96.4    |
+|   5   | meta-metrics/MetaMetrics-RM-v1.0             | Custom Classifier | 93.4  | 98.3  |   86.4    |  90.8  |   98.2    |
+|   6   | Skywork/Skywork-Critic-Llama-3.1-70B         | Generative        | 93.3  | 96.6  |   87.9    |  93.1  |   95.5    |
+|   7   | **Skywork/Skywork-Reward-Llama-3.1-8B-v0.2** | Seq. Classifier   | 93.2  | 94.7  |   88.8    |  92.6  |   96.7    |
+|   8   | nicolinho/QRM-Llama3.1-8B                    | Seq. Classifier   | 93.1  | 94.4  |   89.7    |  92.3  |   95.8    |
+|   9   | LxzGordon/URM-LLaMa-3.1-8B                   | Seq. Classifier   | 92.9  | 95.5  |   88.2    |  91.1  |   97.0    |
+|  10   | Salesforce/SFR-LLaMa-3.1-70B-Judge-r         | Generative        | 92.7  | 96.9  |   84.8    |  91.6  |   97.6    |
+|  11   | Skywork/Skywork-Reward-Llama-3.1-8B          | Seq. Classifier   | 92.5  | 95.8  |   87.3    |  90.8  |   96.2    |
+|  12   | general-preference/GPM-Llama-3.1-8B          | Custom Classifier | 92.2  | 93.3  |   88.6    |  91.1  |   96.0    |
 
 ## Demo Code
 
 We provide example usage of the Skywork reward model series below. Please note that:
 
-1. We removed the BOS token from the chat templates of the two models to prevent it being added twice during `apply_chat_template` and tokenization. **Therefore, please do not rely on `apply_chat_template` to add the BOS token.**
-2. To enable optimal performance for the 27B reward model, ensure that you have enabled either the `flash_attention_2` or `eager` implementation. The default `spda` implementation may result in bugs that could significantly degrade the model's performance for this particular model.
+1. To enable optimal performance for the 27B reward model, ensure that you have enabled either the `flash_attention_2` or `eager` implementation. The default `spda` implementation may result in bugs that could significantly degrade performance for this particular model.
 
 Below is an example of obtaining the reward scores of two conversations.
 
@@ -61,7 +70,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 # Load model and tokenizer
 device = "cuda:0"
-model_name = "Skywork/Skywork-Reward-Gemma-2-27B"
+model_name = "Skywork/Skywork-Reward-Gemma-2-27B-v0.2"  # or "Skywork/Skywork-Reward-Llama-3.1-8B-v0.2"
 rm = AutoModelForSequenceClassification.from_pretrained(
     model_name,
     torch_dtype=torch.bfloat16,
@@ -79,21 +88,26 @@ conv1 = [{"role": "user", "content": prompt}, {"role": "assistant", "content": r
 conv2 = [{"role": "user", "content": prompt}, {"role": "assistant", "content": response2}]
 
 # Format and tokenize the conversations
-conv1_formatted = rm_tokenizer.apply_chat_template(conv1, tokenize=False)
-conv2_formatted = rm_tokenizer.apply_chat_template(conv2, tokenize=False)
-conv1_tokenized = rm_tokenizer(conv1_formatted, return_tensors="pt").to(device)
-conv2_tokenized = rm_tokenizer(conv2_formatted, return_tensors="pt").to(device)
+# If you use `tokenize=False` with `apply_chat_template` and `tokenizer()` to tokenize the conversation,
+# remeber to remove the duplicated BOS token.
+conv1_tokenized = rm_tokenizer.apply_chat_template(conv1, tokenize=True, return_tensors="pt").to(device)
+conv2_tokenized = rm_tokenizer.apply_chat_template(conv2, tokenize=True, return_tensors="pt").to(device)
 
 # Get the reward scores
 with torch.no_grad():
-    score1 = rm(**conv1_tokenized).logits[0][0].item()
-    score2 = rm(**conv2_tokenized).logits[0][0].item()
+    score1 = rm(conv1_tokenized).logits[0][0].item()
+    score2 = rm(conv2_tokenized).logits[0][0].item()
 print(f"Score for response 1: {score1}")
 print(f"Score for response 2: {score2}")
 
 # Output:
-# Score for response 1: 9.1875
-# Score for response 2: -17.875
+# 27B: 
+# Score for response 1: 4.59375
+# Score for response 2: -18.125
+
+# 8B:
+# Score for response 1: 13.6875
+# Score for response 2: -9.1875
 ```
 
 ## Declaration and License Agreement
